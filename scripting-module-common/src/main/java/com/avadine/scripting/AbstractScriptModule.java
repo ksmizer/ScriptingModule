@@ -3,6 +3,7 @@ package com.avadine.scripting;
 import com.inductiveautomation.ignition.common.BundleUtil;
 import com.inductiveautomation.ignition.common.script.hints.ScriptArg;
 import com.inductiveautomation.ignition.common.script.hints.ScriptFunction;
+import com.inductiveautomation.ignition.gateway.model.GatewayContext;
 
 public abstract class AbstractScriptModule implements Gateway {
 
@@ -16,11 +17,11 @@ public abstract class AbstractScriptModule implements Gateway {
 
     @Override
     @ScriptFunction(docBundlePrefix = "AbstractScriptModule")
-    public int getContext() {
+    public GatewayContext getContext() {
 
         return getContextImpl();
     }
 
-    protected abstract int getContextImpl();
+    protected abstract GatewayContext getContextImpl();
 
 }

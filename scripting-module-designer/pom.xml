@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>scripting-module</artifactId>
-        <groupId>com.inductiveautomation.ignition.examples</groupId>
+        <groupId>com.avadine.scripting</groupId>
         <version>1.0.0</version>
     </parent>
 
@@ -13,12 +13,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.inductiveautomation.ignition.examples</groupId>
+            <groupId>com.avadine.scripting</groupId>
             <artifactId>scripting-module-client</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.inductiveautomation.ignition.examples</groupId>
+            <groupId>com.avadine.scripting</groupId>
             <artifactId>scripting-module-common</artifactId>
             <version>${project.version}</version>
         </dependency>

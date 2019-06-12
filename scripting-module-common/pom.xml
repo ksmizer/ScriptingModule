@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>scripting-module</artifactId>
-        <groupId>com.inductiveautomation.ignition.examples</groupId>
+        <groupId>com.avadine.scripting</groupId>
         <version>1.0.0</version>
     </parent>
 
@@ -15,6 +15,13 @@
         <dependency>
             <groupId>com.inductiveautomation.ignitionsdk</groupId>
             <artifactId>ignition-common</artifactId>
+            <version>${ignition-sdk-version}</version>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.inductiveautomation.ignitionsdk</groupId>
+            <artifactId>gateway-api</artifactId>
             <version>${ignition-sdk-version}</version>
             <type>pom</type>
             <scope>provided</scope>

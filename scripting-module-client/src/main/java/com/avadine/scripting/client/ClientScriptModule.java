@@ -3,6 +3,7 @@ package com.avadine.scripting.client;
 import com.avadine.scripting.AbstractScriptModule;
 import com.avadine.scripting.Gateway;
 import com.inductiveautomation.ignition.client.gateway_interface.ModuleRPCFactory;
+import com.inductiveautomation.ignition.gateway.model.GatewayContext;
 
 public class ClientScriptModule extends AbstractScriptModule {
 
@@ -10,14 +11,14 @@ public class ClientScriptModule extends AbstractScriptModule {
 
     public ClientScriptModule() {
         rpc = ModuleRPCFactory.create(
-            "com.avadine.scripting-module",
+            "com.avadine.scripting.scripting-module",
             Gateway.class
         );
     }
 
     @Override
-    protected int getContextImpl() {
-        return rpc.getContext(arg0, arg1);
+    protected GatewayContext getContextImpl() {
+        return rpc.getContext();
     }
 
 }
