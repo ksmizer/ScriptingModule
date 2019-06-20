@@ -43,6 +43,7 @@
             <type>pom</type>
             <scope>provided</scope>
         </dependency>
+        
         <dependency>
             <groupId>com.inductiveautomation.ignitionsdk</groupId>
             <artifactId>vision-designer-api</artifactId>

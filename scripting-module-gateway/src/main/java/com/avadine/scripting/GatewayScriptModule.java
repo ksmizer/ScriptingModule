@@ -1,14 +1,12 @@
 package com.avadine.scripting;
-
-import com.inductiveautomation.ignition.gateway.model.GatewayContext;
-
-import org.apache.wicket.Application;
+import org.python.util.PythonInterpreter;
 
 public class GatewayScriptModule extends AbstractScriptModule {
-
+    
     @Override
-    protected GatewayContext getContextImpl() {
-        return ((GatewayContext) Application.get());
+    protected void runImpl(String pythonScript) {
+        PythonInterpreter interpreter = new PythonInterpreter();
+        interpreter.exec(pythonScript);
     }
 
 }

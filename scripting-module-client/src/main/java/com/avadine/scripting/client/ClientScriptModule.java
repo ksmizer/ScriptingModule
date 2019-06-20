@@ -1,24 +1,22 @@
 package com.avadine.scripting.client;
 
 import com.avadine.scripting.AbstractScriptModule;
-import com.avadine.scripting.Gateway;
+import com.avadine.scripting.GatewayScripts;
 import com.inductiveautomation.ignition.client.gateway_interface.ModuleRPCFactory;
-import com.inductiveautomation.ignition.gateway.model.GatewayContext;
-
 public class ClientScriptModule extends AbstractScriptModule {
 
-    private final Gateway rpc;
+    private final GatewayScripts rpc;
 
     public ClientScriptModule() {
         rpc = ModuleRPCFactory.create(
-            "com.avadine.scripting.scripting-module",
-            Gateway.class
+            "scripting-module.scripting-module",
+            GatewayScripts.class
         );
     }
 
     @Override
-    protected GatewayContext getContextImpl() {
-        return rpc.getContext();
+    protected void runImpl(String pythonScript) {
+        rpc.run(pythonScript);
     }
 
 }
