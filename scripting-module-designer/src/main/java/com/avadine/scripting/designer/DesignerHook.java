@@ -12,7 +12,7 @@ public class DesignerHook extends AbstractDesignerModuleHook {
         super.initializeScriptManager(manager);
 
         manager.addScriptModule(
-            "system.gateway",
+            "aera",
             new ClientScriptModule(),
             new PropertiesFileDocProvider()
         );

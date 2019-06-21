@@ -11,7 +11,7 @@ public class ClientHook extends AbstractClientModuleHook {
         super.initializeScriptManager(manager);
 
         manager.addScriptModule(
-            "system.gateway",
+            "aera",
             new ClientScriptModule(),
             new PropertiesFileDocProvider()
         );

@@ -11,8 +11,7 @@ import org.slf4j.LoggerFactory;
 
 public class GatewayHook extends AbstractGatewayModuleHook {
 
-    private final Logger logger = LoggerFactory.getLogger("Scripting Module");
-
+    private final Logger logger = LoggerFactory.getLogger("Scripting");
     private final GatewayScriptModule scriptModule = new GatewayScriptModule();
 
     @Override
@@ -35,7 +34,7 @@ public class GatewayHook extends AbstractGatewayModuleHook {
         super.initializeScriptManager(manager);
 
         manager.addScriptModule(
-                "system.gateway",
+                "aera",
                 scriptModule,
                 new PropertiesFileDocProvider());
     }

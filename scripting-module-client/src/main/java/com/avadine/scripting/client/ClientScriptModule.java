@@ -9,7 +9,7 @@ public class ClientScriptModule extends AbstractScriptModule {
 
     public ClientScriptModule() {
         rpc = ModuleRPCFactory.create(
-            "scripting-module.scripting-module",
+            "com.avadine.scripting",
             GatewayScripts.class
         );
     }
@@ -19,4 +19,18 @@ public class ClientScriptModule extends AbstractScriptModule {
         rpc.run(pythonScript);
     }
 
+    @Override
+    protected void addBatchImpl(String dataSource, String query) {
+        rpc.addBatch(dataSource, query);
+    }
+
+    @Override
+    protected void addBatchImpl(String dataSource, String prepQuery, Object... parameters) {
+        rpc.addBatch(dataSource, prepQuery, parameters);
+    }
+
+    @Override
+    protected void executeBatchImpl() {
+        rpc.executeBatch();
+    }
 }
