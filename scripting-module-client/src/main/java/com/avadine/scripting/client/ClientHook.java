@@ -20,7 +20,7 @@ public class ClientHook extends AbstractClientModuleHook {
         super.initializeScriptManager(manager);
 
         manager.addScriptModule(
-            "aera",
+            "aera.db",
             new ClientScriptModule(context),
             new PropertiesFileDocProvider()
         );

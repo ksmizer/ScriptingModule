@@ -12,11 +12,12 @@ import org.slf4j.LoggerFactory;
 public class GatewayHook extends AbstractGatewayModuleHook {
 
     private final Logger logger = LoggerFactory.getLogger("Scripting");
-    private final GatewayScriptModule scriptModule = new GatewayScriptModule();
+    private GatewayScriptModule scriptModule;
 
     @Override
     public void setup(GatewayContext gatewayContext) {
         logger.trace("setup()");
+        scriptModule = new GatewayScriptModule(gatewayContext);
     }
 
     @Override
@@ -34,7 +35,7 @@ public class GatewayHook extends AbstractGatewayModuleHook {
         super.initializeScriptManager(manager);
 
         manager.addScriptModule(
-                "aera",
+                "aera.db",
                 scriptModule,
                 new PropertiesFileDocProvider());
     }

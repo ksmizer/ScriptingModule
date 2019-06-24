@@ -25,7 +25,7 @@ public class ClientScriptModule extends AbstractScriptModule {
     private ClientContext context;
 
     public ClientScriptModule(ClientContext thisContext) {
-        rpc = ModuleRPCFactory.create("com.avadine.scripting", GatewayScripts.class);
+        rpc = ModuleRPCFactory.create("scripting-module.scripting-module", GatewayScripts.class);
         context = thisContext;
     }
 
@@ -130,12 +130,12 @@ public class ClientScriptModule extends AbstractScriptModule {
         String engUnits;
         String accessRights;
         String scaleMode;
-        float rawMin;
-        float rawMax;
-        float scaledMin;
-        float scaledMax;
-        float engLow;
-        float engHigh;
+        Float rawMin;
+        Float rawMax;
+        Float scaledMin;
+        Float scaledMax;
+        Float engLow;
+        Float engHigh;
         String engLimitMode;
         Iterator<Property<?>> prop = tag.getProperties().iterator();
         while (prop.hasNext()) {
@@ -157,27 +157,27 @@ public class ClientScriptModule extends AbstractScriptModule {
                 tagInfo.setScaleMode(scaleMode);
                 break;
             case "rawMin":
-                rawMin = (float) tag.get((Property<?>) prop.next());
+                rawMin = (Float) tag.get((Property<?>) prop.next());
                 tagInfo.setRawMin(rawMin);
                 break;
             case "rawMax":
-                rawMax = (float) tag.get((Property<?>) prop.next());
+                rawMax = (Float) tag.get((Property<?>) prop.next());
                 tagInfo.setRawMax(rawMax);
                 break;
             case "scaledMin":
-                scaledMin = (float) tag.get((Property<?>) prop.next());
+                scaledMin = (Float) tag.get((Property<?>) prop.next());
                 tagInfo.setScaledMin(scaledMin);
                 break;
             case "scaledMax":
-                scaledMax = (float) tag.get((Property<?>) prop.next());
+                scaledMax = (Float) tag.get((Property<?>) prop.next());
                 tagInfo.setScaledMax(scaledMax);
                 break;
             case "engLow":
-                engLow = (float) tag.get((Property<?>) prop.next());
+                engLow = (Float) tag.get((Property<?>) prop.next());
                 tagInfo.setEngLow(engLow);
                 break;
             case "engHigh":
-                engHigh = (float) tag.get((Property<?>) prop.next());
+                engHigh = (Float) tag.get((Property<?>) prop.next());
                 tagInfo.setEngHigh(engHigh);
                 break;
             case "engLimitMode":

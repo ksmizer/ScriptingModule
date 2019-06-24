@@ -3,20 +3,13 @@ package com.avadine.scripting;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
-import com.inductiveautomation.ignition.common.tags.config.TagConfigSet;
-import com.inductiveautomation.ignition.common.tags.config.TagConfiguration;
 import com.inductiveautomation.ignition.gateway.model.GatewayContext;
-import com.inductiveautomation.ignition.gateway.opc.OPCManager;
-import com.inductiveautomation.ignition.common.config.Property;
-import com.inductiveautomation.ignition.common.opc.ServerNodeId;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.apache.wicket.Application;
 
 import org.python.util.PythonInterpreter;
 
@@ -24,7 +17,11 @@ public class GatewayScriptModule extends AbstractScriptModule {
     
     private Logger logger = LoggerFactory.getLogger("Scripting");
     private DatabaseUtility database;
-    private GatewayContext context = (GatewayContext) Application.get();
+    private GatewayContext context;
+
+    public GatewayScriptModule(GatewayContext thisContext) {
+        context = thisContext;
+    }
 
     @Override
     protected void runImpl(String pythonScript) {
