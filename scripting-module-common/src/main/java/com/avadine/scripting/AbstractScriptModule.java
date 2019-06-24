@@ -1,5 +1,7 @@
 package com.avadine.scripting;
 
+import java.util.List;
+
 import com.inductiveautomation.ignition.common.BundleUtil;
 import com.inductiveautomation.ignition.common.script.hints.ScriptArg;
 import com.inductiveautomation.ignition.common.script.hints.ScriptFunction;
@@ -49,5 +51,59 @@ public abstract class AbstractScriptModule implements GatewayScripts, ClientScri
     }
 
     protected abstract void executeBatchImpl();
+    
+    @Override
+    @ScriptFunction(docBundlePrefix = "AbstractScriptModule")
+    public void extractTagInformation() {
+
+        extractTagInformationImpl();
+    }
+
+    protected abstract void extractTagInformationImpl();
+    
+    @Override
+    @ScriptFunction(docBundlePrefix = "AbstractScriptModule")
+    public void extractTagInformation(@ScriptArg("tagProvider") String tagProvider) {
+
+        extractTagInformationImpl(tagProvider);
+    }
+
+    protected abstract void extractTagInformationImpl(String tagProvider);
+    
+    @Override
+    @ScriptFunction(docBundlePrefix = "AbstractScriptModule")
+    public void extractTagInformation(@ScriptArg("tagProvider") String tagProvider, @ScriptArg("dataSource") String dataSource) {
+
+        extractTagInformationImpl(tagProvider, dataSource);
+    }
+
+    protected abstract void extractTagInformationImpl(String tagProvider, String dataSource);
+
+    @Override
+    @ScriptFunction(docBundlePrefix = "AbstractScriptModule")
+    public void extractTagInformation(@ScriptArg("tagProvider") String tagProvider, @ScriptArg("dataSource") String dataSource, @ScriptArg("parentPath") String parentPath) {
+
+        extractTagInformationImpl(tagProvider, dataSource, parentPath);
+    }
+
+    protected abstract void extractTagInformationImpl(String tagProvider, String dataSource, String parentPath);
+
+    @Override
+    @ScriptFunction(docBundlePrefix = "AbstractScriptModule")
+    public void extractTagInformation(@ScriptArg("tags") List<TagInformation> tags) {
+
+        extractTagInformationImpl(tags);
+    }
+
+    protected abstract void extractTagInformationImpl(List<TagInformation> tags);
+
+    @Override
+    @ScriptFunction(docBundlePrefix = "AbstractScriptModule")
+    public void extractTagInformation(@ScriptArg("tags") List<TagInformation> tags, @ScriptArg("dataSource") String dataSource) {
+
+        extractTagInformationImpl(tags, dataSource);
+    }
+
+    protected abstract void extractTagInformationImpl(List<TagInformation> tags, String dataSource);
 
 }

@@ -3,8 +3,15 @@ package com.avadine.scripting;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
+import com.inductiveautomation.ignition.common.tags.config.TagConfigSet;
+import com.inductiveautomation.ignition.common.tags.config.TagConfiguration;
 import com.inductiveautomation.ignition.gateway.model.GatewayContext;
+import com.inductiveautomation.ignition.gateway.opc.OPCManager;
+import com.inductiveautomation.ignition.common.config.Property;
+import com.inductiveautomation.ignition.common.opc.ServerNodeId;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,6 +77,8 @@ public class GatewayScriptModule extends AbstractScriptModule {
         database.closeConnection();
     }
 
+    
+    
     private void createConnectionIfNotExists(String dataSource) throws SQLException {
         if (database.getConnection() == null) {
             Connection connection;
@@ -77,19 +86,19 @@ public class GatewayScriptModule extends AbstractScriptModule {
             database.createConnection(connection);
         }
     }
-
+    
     private boolean isInteger(Object obj) {
         return obj instanceof Integer;
     }
-
+    
     private boolean isFloat(Object obj) {
         return obj instanceof Float;
     }
-
+    
     private boolean isString(Object obj) {
         return obj instanceof String;
     }
-
+    
     private boolean isDouble(Object obj) {
         return obj instanceof Double;
     }
@@ -97,7 +106,7 @@ public class GatewayScriptModule extends AbstractScriptModule {
     private boolean isDate(Object obj) {
         return obj instanceof Date;
     }
-
+    
     public int countCharacters(String string, char character) {
         int count = 0;
         for (char iCharacter : string.toCharArray()) {
@@ -106,5 +115,42 @@ public class GatewayScriptModule extends AbstractScriptModule {
             }
         }
         return count;
+    }
+    
+    @Override
+    protected void extractTagInformationImpl() {
+        logger.info("Unused method");
+    }
+
+    @Override
+    protected void extractTagInformationImpl(String tagProvider) {
+        logger.info("Unused method");
+    }
+
+    @Override
+    protected void extractTagInformationImpl(String tagProvider, String dataSource) {
+        logger.info("Unused method");
+    }
+    
+    @Override
+    protected void extractTagInformationImpl(String tagProvider, String dataSource, String parentPath) {
+        logger.info("Unused method");
+    }
+    
+    @Override
+    protected void extractTagInformationImpl(List<TagInformation> tags) {
+        logger.info("Unused method");
+    }
+    
+    @Override
+    protected void extractTagInformationImpl(List<TagInformation> tags, String dataSource) {
+        try {
+            createConnectionIfNotExists(dataSource);
+        } catch (SQLException e) {
+            logger.error(e.getMessage(), e);
+        }
+        for (TagInformation tag : tags) {
+            logger.info(tag.toString());
+        }
     }
 }

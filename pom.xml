@@ -13,7 +13,7 @@
     <description>Scripting Ignition Module</description>
 
     <properties>
-        <ignition-sdk-version>7.9.0</ignition-sdk-version>
+        <ignition-sdk-version>7.9.4</ignition-sdk-version>
     </properties>
 
     <modules>
