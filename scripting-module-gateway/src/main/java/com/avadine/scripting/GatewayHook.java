@@ -35,7 +35,7 @@ public class GatewayHook extends AbstractGatewayModuleHook {
         super.initializeScriptManager(manager);
 
         manager.addScriptModule(
-                "aera.db",
+                "system.aera",
                 scriptModule,
                 new PropertiesFileDocProvider());
     }

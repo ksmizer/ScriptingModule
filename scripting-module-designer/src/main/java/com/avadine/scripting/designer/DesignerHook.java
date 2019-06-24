@@ -23,7 +23,7 @@ public class DesignerHook extends AbstractDesignerModuleHook {
         super.initializeScriptManager(manager);
 
         manager.addScriptModule(
-            "aera.db",
+            "system.aera",
             new ClientScriptModule(clientContext),
             new PropertiesFileDocProvider()
         );
