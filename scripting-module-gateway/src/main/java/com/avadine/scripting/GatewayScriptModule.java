@@ -148,8 +148,9 @@ public class GatewayScriptModule extends AbstractScriptModule {
         }
         int parameterCount = 15;
         String tagPaths = "";
-        String parameter = "?";
+        String parameter = "?,";
         String prepQuery = "EXEC InsertTagInformation " + parameter.repeat(parameterCount);
+        prepQuery = prepQuery.substring(0, prepQuery.length()-1);
         for (TagInformation tag : tags) {
             // Add Batch
             Object[] parameters = new Object[parameterCount];
