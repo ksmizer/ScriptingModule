@@ -54,8 +54,6 @@ public class ClientScriptModule extends AbstractScriptModule {
         String tagProvider = context.getDefaultSQLTagsProviderName();
         String dataSource = context.getDefaultDatasourceName();
         String parentPath = "";
-        // ClientTagUtilities tagUtils = new ClientTagUtilities(context);
-        // TagConfigSet tagConfig = tagUtils.browseConfiguration("", true);
         List<TagInformation> tags = browseConfiguration(tagProvider, parentPath);
         rpc.extractTagInformation(tags, dataSource);
     }
@@ -64,8 +62,6 @@ public class ClientScriptModule extends AbstractScriptModule {
     protected void extractTagInformationImpl(String tagProvider) {
         String dataSource = context.getDefaultDatasourceName();
         String parentPath = "";
-        // ClientTagUtilities tagUtils = new ClientTagUtilities(context);
-        // TagConfigSet tagConfig = tagUtils.browseConfiguration("", true);
         List<TagInformation> tags = browseConfiguration(tagProvider, parentPath);
         rpc.extractTagInformation(tags, dataSource);
     }
@@ -141,47 +137,47 @@ public class ClientScriptModule extends AbstractScriptModule {
         while (prop.hasNext()) {
             switch (prop.next().toString()) {
             case "opcItemPath":
-                opcItemPath = (String) tag.get((Property<?>) prop.next());
+                opcItemPath = (String) tag.get(prop.next());
                 tagInfo.setOpcItemPath(opcItemPath);
                 break;
             case "engUnit":
-                engUnits = (String) tag.get((Property<?>) prop.next());
+                engUnits = (String) tag.get(prop.next());
                 tagInfo.setEngUnits(engUnits);
                 break;
             case "accessRights":
-                accessRights = (String) tag.get((Property<?>) prop.next());
+                accessRights = (String) tag.get(prop.next());
                 tagInfo.setAccessRights(accessRights);
                 break;
             case "scaleMode":
-                scaleMode = (String) tag.get((Property<?>) prop.next());
+                scaleMode = (String) tag.get(prop.next());
                 tagInfo.setScaleMode(scaleMode);
                 break;
             case "rawMin":
-                rawMin = (Float) tag.get((Property<?>) prop.next());
+                rawMin = (Float) tag.get(prop.next());
                 tagInfo.setRawMin(rawMin);
                 break;
             case "rawMax":
-                rawMax = (Float) tag.get((Property<?>) prop.next());
+                rawMax = (Float) tag.get(prop.next());
                 tagInfo.setRawMax(rawMax);
                 break;
             case "scaledMin":
-                scaledMin = (Float) tag.get((Property<?>) prop.next());
+                scaledMin = (Float) tag.get(prop.next());
                 tagInfo.setScaledMin(scaledMin);
                 break;
             case "scaledMax":
-                scaledMax = (Float) tag.get((Property<?>) prop.next());
+                scaledMax = (Float) tag.get(prop.next());
                 tagInfo.setScaledMax(scaledMax);
                 break;
             case "engLow":
-                engLow = (Float) tag.get((Property<?>) prop.next());
+                engLow = (Float) tag.get(prop.next());
                 tagInfo.setEngLow(engLow);
                 break;
             case "engHigh":
-                engHigh = (Float) tag.get((Property<?>) prop.next());
+                engHigh = (Float) tag.get(prop.next());
                 tagInfo.setEngHigh(engHigh);
                 break;
             case "engLimitMode":
-                engLimitMode = (String) tag.get((Property<?>) prop.next());
+                engLimitMode = (String) tag.get(prop.next());
                 tagInfo.setEngLimitMode(engLimitMode);
                 break;
             default:

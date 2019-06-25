@@ -12,6 +12,7 @@ public class TagInformation {
     private String engUnits;
     private String accessRights;
     private String scaleMode;
+    private boolean isScaled;
     private float rawMin;
     private float rawMax;
     private float scaledMin;
@@ -19,6 +20,7 @@ public class TagInformation {
     private float engLow;
     private float engHigh;
     private String engLimitMode;
+
 
     public TagInformation() {
     }
@@ -30,6 +32,7 @@ public class TagInformation {
         this.engUnits = engUnits;
         this.accessRights = accessRights;
         this.scaleMode = scaleMode;
+        this.isScaled = scaleMode != "None";
         this.rawMin = rawMin;
         this.rawMax = rawMax;
         this.scaledMin = scaledMin;
@@ -37,19 +40,6 @@ public class TagInformation {
         this.engLow = engLow;
         this.engHigh = engHigh;
         this.engLimitMode = engLimitMode;
-    }
-
-    public String getHostname() {
-        return this.hostname;
-    }
-
-    public void setHostname(String hostname) {
-        this.hostname = hostname;
-    }
-
-    public TagInformation hostname(String hostname) {
-        this.hostname = hostname;
-        return this;
     }
 
     public String getTagPath() {
@@ -66,6 +56,14 @@ public class TagInformation {
 
     public void setOpcItemPath(String opcItemPath) {
         this.opcItemPath = opcItemPath;
+    }
+
+    public String getHostname() {
+        return this.hostname;
+    }
+
+    public void setHostname(String hostname) {
+        this.hostname = hostname;
     }
 
     public String getEngUnits() {
@@ -90,6 +88,15 @@ public class TagInformation {
 
     public void setScaleMode(String scaleMode) {
         this.scaleMode = scaleMode;
+        setIsScaled(scaleMode != "None");
+    }
+
+    public boolean isScaled() {
+        return this.isScaled;
+    }
+
+    private void setIsScaled(boolean isScaled) {
+        this.isScaled = isScaled;
     }
 
     public float getRawMin() {
@@ -158,6 +165,11 @@ public class TagInformation {
         return this;
     }
 
+    public TagInformation hostname(String hostname) {
+        this.hostname = hostname;
+        return this;
+    }
+
     public TagInformation engUnits(String engUnits) {
         this.engUnits = engUnits;
         return this;
@@ -170,6 +182,11 @@ public class TagInformation {
 
     public TagInformation scaleMode(String scaleMode) {
         this.scaleMode = scaleMode;
+        return this;
+    }
+
+    public TagInformation isScaled(boolean isScaled) {
+        this.isScaled = isScaled;
         return this;
     }
 
@@ -216,12 +233,12 @@ public class TagInformation {
             return false;
         }
         TagInformation tagInformation = (TagInformation) o;
-        return Objects.equals(tagPath, tagInformation.tagPath) && Objects.equals(opcItemPath, tagInformation.opcItemPath) && Objects.equals(engUnits, tagInformation.engUnits) && Objects.equals(accessRights, tagInformation.accessRights) && Objects.equals(scaleMode, tagInformation.scaleMode) && rawMin == tagInformation.rawMin && rawMax == tagInformation.rawMax && scaledMin == tagInformation.scaledMin && scaledMax == tagInformation.scaledMax && engLow == tagInformation.engLow && engHigh == tagInformation.engHigh && Objects.equals(engLimitMode, tagInformation.engLimitMode);
+        return Objects.equals(tagPath, tagInformation.tagPath) && Objects.equals(opcItemPath, tagInformation.opcItemPath) && Objects.equals(hostname, tagInformation.hostname) && Objects.equals(engUnits, tagInformation.engUnits) && Objects.equals(accessRights, tagInformation.accessRights) && Objects.equals(scaleMode, tagInformation.scaleMode) && isScaled == tagInformation.isScaled && rawMin == tagInformation.rawMin && rawMax == tagInformation.rawMax && scaledMin == tagInformation.scaledMin && scaledMax == tagInformation.scaledMax && engLow == tagInformation.engLow && engHigh == tagInformation.engHigh && Objects.equals(engLimitMode, tagInformation.engLimitMode);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tagPath, opcItemPath, engUnits, accessRights, scaleMode, rawMin, rawMax, scaledMin, scaledMax, engLow, engHigh, engLimitMode);
+        return Objects.hash(tagPath, opcItemPath, hostname, engUnits, accessRights, scaleMode, isScaled, rawMin, rawMax, scaledMin, scaledMax, engLow, engHigh, engLimitMode);
     }
 
     @Override
@@ -229,9 +246,11 @@ public class TagInformation {
         return "{" +
             " tagPath='" + getTagPath() + "'" +
             ", opcItemPath='" + getOpcItemPath() + "'" +
+            ", hostname='" + getHostname() + "'" +
             ", engUnits='" + getEngUnits() + "'" +
             ", accessRights='" + getAccessRights() + "'" +
             ", scaleMode='" + getScaleMode() + "'" +
+            ", isScaled='" + isScaled() + "'" +
             ", rawMin='" + getRawMin() + "'" +
             ", rawMax='" + getRawMax() + "'" +
             ", scaledMin='" + getScaledMin() + "'" +
@@ -241,5 +260,6 @@ public class TagInformation {
             ", engLimitMode='" + getEngLimitMode() + "'" +
             "}";
     }
+    
     
 }

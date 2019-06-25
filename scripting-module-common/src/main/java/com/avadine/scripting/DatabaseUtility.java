@@ -126,12 +126,11 @@ public class DatabaseUtility {
         return statement.getResultSet();
     }
 
-    public void executeUpdate(String dataSource, String query) {
+    public void executeUpdate(String dataSource, String query) throws SQLException {
         if (conn != null && statement != null) {
-            try {
+            query = query.trim();
+            if (!query.startsWith("SELECT")) {
                 statement.executeUpdate(query);
-            } catch (SQLException e) {
-                logger.error(e.getMessage(), e);
             }
         }
     }

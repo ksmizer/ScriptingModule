@@ -57,7 +57,7 @@ public class GatewayScriptModule extends AbstractScriptModule {
                     } else if (isDate(parameter)) {
                         param = parameter.toString();
                     } else {
-                        param = "";
+                        param = "NULL";
                     }
                     prepQuery = prepQuery.replaceFirst("?", param);
                 }
@@ -146,8 +146,51 @@ public class GatewayScriptModule extends AbstractScriptModule {
         } catch (SQLException e) {
             logger.error(e.getMessage(), e);
         }
+        int parameterCount = 15;
+        String tagPaths = "";
+        String parameter = "?";
+        String prepQuery = "EXEC InsertTagInformation " + parameter.repeat(parameterCount);
         for (TagInformation tag : tags) {
+            // Add Batch
+            Object[] parameters = new Object[parameterCount];
+            parameters[0] = tag.getTagPath();
+            parameters[1] = tag.getOpcItemPath();
+            parameters[2] = tag.getEngUnits();
+            parameters[3] = tag.isScaled();
+            parameters[4] = tag.isScaled() ? tag.getRawMax() : null;
+            parameters[5] = tag.isScaled() ? tag.getRawMin() : null;;
+            parameters[6] = tag.isScaled() ? tag.getScaledMax() : null;;
+            parameters[7] = tag.isScaled() ? tag.getScaledMin() : null;;
+            // parameters[8] = tag.getIsAlarm();
+            parameters[8] = null;
+            parameters[9] = tag.getHostname();
+            parameters[10] = tag.getAccessRights();
+            parameters[11] = tag.getEngLow();
+            parameters[12] = tag.getEngHigh();
+            parameters[13] = tag.getEngLimitMode();
+            // parameters[14] = tag.getDatatype();
+            parameters[14] = null;
+            // addBatchImpl(dataSource, prepQuery, parameters);
+            tagPaths += tag.getTagPath() + ", ";
             logger.info(tag.toString());
         }
+        // Execute Batch
+        executeBatchImpl();
+        
+
+        // Delete old tags
+        try {
+            createConnectionIfNotExists(dataSource);
+        } catch (SQLException e) {
+            logger.error(e.getMessage(), e);
+        }
+        String query = "DELETE FROM TagInformation WHERE TagPath NOT IN (" + tagPaths.substring(0, tagPaths.length() - 2) + ")";
+        logger.debug(query);
+        // try {
+        //     database.executeUpdate(dataSource, query);
+        // } catch (SQLException e) {
+        //     logger.error(e.getMessage(), e);
+        // }
+        database.closeConnection();
     }
 }
